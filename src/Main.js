@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import './Main.css';
+import { Link } from 'react-router-dom';
 
 const shelves = [
   {
-    id: 7,
     name: 'A',
   }, {
-    id: 22,
     name: 'B',
   }, {
-    id: 35,
     name: 'C',
   }, {
-    id: 4098,
     name: 'D',
   },
 ]
@@ -38,7 +35,11 @@ class Main extends Component {
   render() {
     return (
       <div>
-        {this.state.shelves.map((e) => <div className="shelf">Shelf {e.name}</div>)}
+        {this.state.shelves.map((e) => (
+          <div className="shelf">
+            <Link to={`/shelves/${e.name}`}>Shelf {e.name}</Link>
+          </div>
+        ))}
       </div>
     );
   }
