@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Header.css';
 import { Route, Link } from 'react-router-dom';
-import Shelf from './Shelf';
 
 class Header extends Component {
   render() {
@@ -9,14 +8,14 @@ class Header extends Component {
       <div className="header-with-logo">
         <Route exact path="/" render={() => (
           <div>
-            (LOGO) Shelfie
+            <Link to="/">(LOGO)</Link> Shelfie
           </div>
         )} />
-        <Route path="/shelves/:id" render={(props) => (
+        <Route path="/shelves/:shelfId" render={(props) => (
           <div>
             <Link to="/">(LOGO)</Link>
             {' '}
-            Shelf {props.match.params.id}
+            Shelf {props.match.params.shelfId}
           </div>
         )} />
       </div>

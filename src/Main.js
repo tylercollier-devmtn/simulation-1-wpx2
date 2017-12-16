@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Main.css';
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+import Shelf from './Shelf';
+import CreateBin from './CreateBin';
 
 const shelves = [
   {
@@ -35,11 +37,14 @@ class Main extends Component {
   render() {
     return (
       <div>
-        {this.state.shelves.map((e) => (
-          <div className="shelf">
-            <Link to={`/shelves/${e.name}`}>Shelf {e.name}</Link>
-          </div>
-        ))}
+        <Route exact path="/" render={() =>
+          this.state.shelves.map((e) => (
+            <div className="shelf">
+              <Link to={`/shelves/${e.name}`}>Shelf {e.name}</Link>
+            </div>
+          ))} />
+        <Route path="/shelves/:shelfId" render={(props) => <Shelf {...props} name={props.match.params.shelfId} />} />
+        <Route path="/create/:shelfAndBinIds" component={CreateBin} />
       </div>
     );
   }
